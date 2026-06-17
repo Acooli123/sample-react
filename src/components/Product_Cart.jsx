@@ -1,27 +1,51 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { decrement, increment, selectCount } from '../features/cart/cartSlice'
+import { useDispatch } from "react-redux";
+import { addToCart } from "../features/cart/cartSlice";
 
 const Product_Cart = ({ name, img, price }) => {
-  const dispatch = useDispatch()
-  const count = useSelector(selectCount)
-  const total = count * price
+  const dispatch = useDispatch();
+
+  const handleAdd = () => {
+    dispatch(
+      addToCart({
+        name,
+        price,
+      })
+    );
+  };
 
   return (
-    <div style={{ padding: '10px', margin: '10px', display: 'flex', alignItems: 'center', flexDirection: 'column', borderRadius: '5px' }}>
-      <p style={{ fontSize: '18px', fontWeight: 'bold' }}>Count: {count}</p>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <button style={{ padding: '8px 16px', margin: '5px', border: '1px solid rgb(54, 36, 36)', borderRadius: '5px' }} onClick={() => dispatch(increment())}>
-          Increment
-        </button>
-        <button style={{ padding: '8px 16px', margin: '5px', border: '1px solid rgb(54, 36, 36)', borderRadius: '5px' }} onClick={() => dispatch(decrement())}>
-          Decrement
-        </button>
-      </div>
-      <p style={{ fontSize: '18px', fontWeight: 'bold' }}>Name: {name}</p>
-      <p style={{ fontSize: '18px', fontWeight: 'bold' }}>Total: {total}</p>
-      <img src={img} alt={name} style={{ maxWidth: '100%', height: 'auto', margin: '10px 0' }} />
-    </div>
-  )
-}
+    <div
+      style={{
+        padding: "20px",
+        margin: "20px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        border: "1px solid gray",
+        borderRadius: "10px",
+      }}
+    >
+      <h2>{name}</h2>
 
-export default Product_Cart
+      <img
+        src={img}
+        alt={name}
+        style={{ width: "250px", height: "250px" }}
+      />
+
+      <p>Price: ${price}</p>
+
+      <button
+        onClick={handleAdd}
+        style={{
+          padding: "10px 20px",
+          cursor: "pointer",
+        }}
+      >
+        Add To Cart
+      </button>
+    </div>
+  );
+};
+
+export default Product_Cart;
