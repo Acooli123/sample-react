@@ -1,5 +1,3 @@
-import React from 'react'
-
 const TailwindCSS = () => {
   return (
     <div className="mt-4 flex justify-center items-center flex-col">

@@ -1,8 +1,11 @@
-import React from "react";
 import "./Navbar.css";
+import { useSelector } from "react-redux";
+ 
+
 
 
 const Navbar = () => {
+  const items = useSelector((state) => state.cart.items);
   return (
     <nav className="navbar">
       <div className="logo">MyApp</div>
@@ -15,7 +18,7 @@ const Navbar = () => {
       </ul>
 
       <button className="btn">Login</button>
-      
+      <h2>Cart: {items.length}</h2>
     </nav>
   );
 }

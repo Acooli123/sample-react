@@ -1,17 +1,19 @@
-import React,{useState} from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { decrement, increment, selectCount } from '../features/cart/cartSlice'
 
 const Product_Cart = ({ name, img, price }) => {
-  const [count, setCount] = useState(0)
+  const dispatch = useDispatch()
+  const count = useSelector(selectCount)
   const total = count * price
 
   return (
     <div style={{ padding: '10px', margin: '10px', display: 'flex', alignItems: 'center', flexDirection: 'column', borderRadius: '5px' }}>
       <p style={{ fontSize: '18px', fontWeight: 'bold' }}>Count: {count}</p>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <button style={{ padding: '8px 16px', margin: '5px', border: '1px solid rgb(54, 36, 36)', borderRadius: '5px' }} onClick={() => setCount(count + 1)}>
+        <button style={{ padding: '8px 16px', margin: '5px', border: '1px solid rgb(54, 36, 36)', borderRadius: '5px' }} onClick={() => dispatch(increment())}>
           Increment
         </button>
-        <button style={{ padding: '8px 16px', margin: '5px', border: '1px solid rgb(54, 36, 36)', borderRadius: '5px' }} onClick={() => setCount(count - 1)}>
+        <button style={{ padding: '8px 16px', margin: '5px', border: '1px solid rgb(54, 36, 36)', borderRadius: '5px' }} onClick={() => dispatch(decrement())}>
           Decrement
         </button>
       </div>
