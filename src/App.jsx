@@ -2,12 +2,13 @@ import Navbar from "./components/Navbar";
 import Product_Cart from "./components/Product_Cart";
 import TailwindCSS from "./components/TailwindCSS";
 import { Route, Routes } from "react-router-dom";
+import StudentForm from "./components/StudentForm";
 
 const App = () => {
   return (
     <div>
       <Navbar />
-      
+      <StudentForm />
 
       <Routes>
         <Route path="/" element={<TailwindCSS />} />
